@@ -1,0 +1,9 @@
+{
+    "bucketName": "reacts3imagedemo6c18f23d90874531ad1da79d61252afd",
+    "authPolicyName": "s3_amplify_c7f9baea",
+    "unauthPolicyName": "s3_amplify_c7f9baea",
+    "authRoleName": "reacts3imagedemo-20181117080638-authRole",
+    "unauthRoleName": "reacts3imagedemo-20181117080638-unauthRole",
+    "authPermissions": "rw",
+    "unauthPermissions": ""
+}
