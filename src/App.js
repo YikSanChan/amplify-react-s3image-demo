@@ -1,11 +1,7 @@
-import React, { Component } from 'react';
+import React from "react";
+import { withAuthenticator } from "aws-amplify-react";
+import MyForm from "./MyForm";
 
-class App extends Component {
-  render() {
-    return (
-      <div>Amplify React S3Image Demo</div>
-    );
-  }
-}
+const App = () => <MyForm />;
 
-export default App;
+export default withAuthenticator(App, true);
