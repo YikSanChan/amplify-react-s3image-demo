@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-import Amplify, { Storage } from "aws-amplify";
+import Amplify from "aws-amplify";
 import aws_exports from "./aws-exports";
 
 Amplify.configure(aws_exports);
-Storage.configure({ level: "private" });
+window.LOG_LEVEL = "DEBUG";
 ReactDOM.render(<App />, document.getElementById("root"));

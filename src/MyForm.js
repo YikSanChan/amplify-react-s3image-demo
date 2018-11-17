@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Storage } from "aws-amplify";
+import { S3Image } from "aws-amplify-react";
 
 // It might contains other fields other than uploading image
 class MyForm extends Component {
@@ -7,48 +7,13 @@ class MyForm extends Component {
     super(props);
     this.state = {
       // this should be a random string
-      imgKey: "example.png",
-      preSignedUrl: ""
+      imgKey: "example.png"
     };
-    this.fetchPreSignedUrlFromS3.bind(this);
-    this.handleFileChange.bind(this);
   }
 
-  fetchPreSignedUrlFromS3 = () => {
-    Storage.get(this.state.imgKey).then(preSignedUrl =>
-      this.setState({ preSignedUrl })
-    );
-  };
-
-  handleFileChange = event => {
-    const { imgKey } = this.state;
-    const file = event.target.files[0];
-    Storage.put(imgKey, file, {
-      contentType: "image/png"
-    })
-      // response.key === imgKey is ensured by Storage.put(imgKey, ...)
-      .then(response => this.fetchPreSignedUrlFromS3())
-      .catch(err => console.error(err));
-  };
-
   render() {
-    const { preSignedUrl } = this.state;
-    return (
-      <div>
-        <div>
-          <label>Upload an image</label>
-          <input
-            type="file"
-            accept="image/png"
-            onChange={this.handleFileChange}
-          />
-        </div>
-        <div>
-          <label>Preview the image</label>
-          <img src={preSignedUrl} />
-        </div>
-      </div>
-    );
+    const { imgKey } = this.state;
+    return <S3Image picker imgKey={imgKey} level="private" />;
   }
 }
 
